@@ -40,10 +40,24 @@ Upload the certificates and run the script on other master nodes:
 bash on_other_master.sh
 ```
 
+Make the master node schedulable:
+```bash
+kubectl taint nodes anime1 node-role.kubernetes.io/control-plane:NoSchedule-
+kubectl taint nodes anime2 node-role.kubernetes.io/control-plane:NoSchedule-
+kubectl taint nodes anime3 node-role.kubernetes.io/control-plane:NoSchedule-
+```
+
 Check if ready:
 ```bash
 kubectl get nodes -o wide
 kubectl get pods -n kube-system
+```
+
+Reset k8s cluster:
+```bash
+sudo kubeadm reset -f
+sudo rm -rf /var/lib/etcd
+sudo rm -rf /etc/kubernetes/manifests/*
 ```
 
 Install Helm and Prometheus:
