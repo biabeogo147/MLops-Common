@@ -60,19 +60,11 @@ sudo rm -rf /var/lib/etcd
 sudo rm -rf /etc/kubernetes/manifests/*
 ```
 
-Install Helm and Prometheus:
+Install Helm/Prometheus/Ingress:
 ```bash
 bash helm-install.sh
 bash prometheus-install.sh
-```
-
-On-premise ingress setup:
-```bash
 bash ingress-install.sh
-kubectl edit svc ingress-nginx-controller -n ingress-nginx
-# Change type: LoadBalancer to type: NodePort
-# Change nodePort http: "" => http: "30080"
-# Change nodePort https: "" => https: "30443"  
 ```
 
 Change port in /etc/nginx/sites-available/default
