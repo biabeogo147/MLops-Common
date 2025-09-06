@@ -130,7 +130,7 @@ Docker-compose file for Rancher:
 version: '3'
 services:
   rancher-server:
-    image: rancher/rancher:v2.9.2
+    image: rancher/rancher:v2.9-head
     container_name: rancher-server
     restart: unless-stopped
     ports:
