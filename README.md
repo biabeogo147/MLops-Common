@@ -1,5 +1,3 @@
-I used source code from https://github.com/data-guru0/ANIME-RECOMMENDER-SYSTEM-LLMOPS and modified it based on my needs.
-
 Install Docker and give permissions to your user.
 ```bash
 cd MLops-Common
@@ -40,11 +38,11 @@ Upload the certificates and run the script on other master nodes:
 bash on_other_master.sh
 ```
 
-Make the master node schedulable:
+Make the master node to work as worker:
 ```bash
-kubectl taint nodes anime1 node-role.kubernetes.io/control-plane:NoSchedule-
-kubectl taint nodes anime2 node-role.kubernetes.io/control-plane:NoSchedule-
-kubectl taint nodes anime3 node-role.kubernetes.io/control-plane:NoSchedule-
+kubectl taint nodes node1 node-role.kubernetes.io/control-plane:NoSchedule-
+kubectl taint nodes node2 node-role.kubernetes.io/control-plane:NoSchedule-
+kubectl taint nodes node3 node-role.kubernetes.io/control-plane:NoSchedule-
 ```
 
 Check if ready:
