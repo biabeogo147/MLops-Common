@@ -65,6 +65,12 @@ bash prometheus-install.sh
 bash ingress-install.sh
 ```
 
+Get grafana admin password:
+```bash
+kubectl get secret -n monitoring monitoring-grafana \
+  -o jsonpath="{.data.admin-password}" | base64 --decode; echo
+```
+
 Change port in /etc/nginx/sites-available/default
 ```nginx
 server {
