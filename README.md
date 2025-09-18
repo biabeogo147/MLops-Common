@@ -43,6 +43,9 @@ Make the master node to work as worker:
 kubectl taint nodes node1 node-role.kubernetes.io/control-plane:NoSchedule-
 kubectl taint nodes node2 node-role.kubernetes.io/control-plane:NoSchedule-
 kubectl taint nodes node3 node-role.kubernetes.io/control-plane:NoSchedule-
+kubectl describe node node1
+kubectl describe node node2
+kubectl describe node node3
 ```
 
 Check if ready:
