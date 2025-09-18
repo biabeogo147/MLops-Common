@@ -56,6 +56,11 @@ Reset k8s cluster:
 sudo kubeadm reset -f
 sudo rm -rf /var/lib/etcd
 sudo rm -rf /etc/kubernetes/manifests/*
+sudo rm -rf /etc/cni/net.d
+sudo rm $HOME/.kube/config
+sudo crictl rm --all # remove all containers
+sudo crictl rmi --all # remove all images
+sudo systemctl restart containerd
 ```
 
 Install Helm/Prometheus/Ingress:
