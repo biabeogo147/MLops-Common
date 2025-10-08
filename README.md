@@ -12,15 +12,6 @@ sudo systemctl enable docker.service
 sudo systemctl enable containerd.service
 ```
 
-If you use Minikube, run the following commands:
-```bash
-cd minikube-setup
-bash minikube-install.sh
-bash kubectl-install.sh
-minikube start
-eval $(minikube docker-env)
-```
-
 If you use k8s, run the following commands:
 ```bash
 cd k8s-setup
