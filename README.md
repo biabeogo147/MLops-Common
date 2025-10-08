@@ -57,17 +57,10 @@ sudo crictl rmi --all # remove all images
 sudo systemctl restart containerd
 ```
 
-Install Helm/Prometheus/Ingress:
+Install Helm/Ingress:
 ```bash
 bash helm-install.sh
-bash prometheus-install.sh
 bash ingress-install.sh
-```
-
-Get grafana admin password:
-```bash
-kubectl get secret -n monitoring monitoring-grafana \
-  -o jsonpath="{.data.admin-password}" | base64 --decode; echo
 ```
 
 Change port in /etc/nginx/sites-available/default
@@ -105,39 +98,4 @@ Test nginx config and restart:
 ```bash
 sudo nginx -t
 sudo systemctl restart nginx
-```
-
-Rancher setup (optional):
-```bash
-sudo mkfs.ext4 -m 0 /dev/sdb
-mkdir /data
-echo "/dev/sdb  /data  ext4  defaults  0  0" | sudo tee -a /etc/fstab
-mount -a
-sudo df -h
-
-mkdir /data/rancher
-cd /data/rancher
-nano docker-compose.yml
-```
-
-Docker-compose file for Rancher:
-```yaml
-version: '3'
-services:
-  rancher-server:
-    image: rancher/rancher:v2.9-head
-    container_name: rancher-server
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - /data/rancher/data:/var/lib/rancher
-    privileged: true
-```
-
-Run Rancher and get the bootstrap password:
-```bash
-docker-compose up -d
-docker logs rancher-server 2>&1 | grep "Bootstrap Password:"
 ```
