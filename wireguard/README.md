@@ -117,3 +117,9 @@ WantedBy=multi-user.target
 systemctl enable wgui.{path,service} wg-quick@wg0.service wgui-web.service
 systemctl start wgui.{path,service}
 ```
+
+# 8.
+```bash
+sudo pkill -f wireguard-ui
+sudo systemctl restart wgui.service
+```
