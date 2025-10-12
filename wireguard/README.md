@@ -19,7 +19,7 @@ nano /etc/wireguard/start-wgui.sh
 ```bash
 #!/bin/bash
 cd /etc/wireguard
-./wireguard-ui 192.168.100.113 0.0.0.0:5000
+./wireguard-ui public_ip 127.0.0.1:5000
 ```
 
 ### 3.2. Add execute permission to the script
@@ -118,8 +118,17 @@ systemctl enable wgui.{path,service} wg-quick@wg0.service wgui-web.service
 systemctl start wgui.{path,service}
 ```
 
-# 8.
+## Note
+
+### Note.1. To apply changes to wg0.conf, restart the WireGuard UI service
 ```bash
 sudo pkill -f wireguard-ui
 sudo systemctl restart wgui.service
+```
+
+### Note.2. To apply changes to start-wgui.sh, run update.sh
+
+### Note.3. Check ports open on server:
+```bash
+sudo ss -tulnp | grep -E "5000|51820"
 ```
